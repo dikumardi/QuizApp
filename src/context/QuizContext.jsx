@@ -1,9 +1,9 @@
-import React from 'react'
-import QuizApp from './components/QuizApp'
+import React, { createContext, useState } from 'react'
 
-const App = () => {
-  const quizData = [
- 
+export const QuizDataContext = createContext();
+
+const QuizContext = (props) => {
+      const quizData = [
   { 
     question: "Who is the founder of Microsoft?",
      options: ["Steve Jobs", "Bill Gates", "Mark Zuckerberg", "Elon Musk"], 
@@ -47,19 +47,14 @@ const App = () => {
   },
 ];
 
+ const [currentQuestionIndex, setcurrentQuestionIndex] = useState(0)
+ let SingleQuestion = quizData[currentQuestionIndex];
+console.log(SingleQuestion);
+
+
   return (
-    <div>
- {/** <ShowResult/> **/}
-
-        <QuizApp />
-   
-
-    
-    </div>
+    <QuizDataContext.Provider value={[currentQuestionIndex,setcurrentQuestionIndex,SingleQuestion]}>{props.children}</QuizDataContext.Provider>
   )
 }
 
-export default App
-
-
-//     <QuizApp question={quizData[0].question} options={quizData[0].options} answer={quizData[0].answer}  />
+export default QuizContext
