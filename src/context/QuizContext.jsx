@@ -47,6 +47,9 @@ const QuizContext = (props) => {
   },
 ];
 
+    const [score, setScore] = useState(0)
+    
+
  const [currentQuestionIndex, setcurrentQuestionIndex] = useState(0)
  let SingleQuestion = quizData[currentQuestionIndex];
     
@@ -54,7 +57,7 @@ const QuizContext = (props) => {
 
   return (
     <QuizDataContext.Provider 
-    value={[currentQuestionIndex,setcurrentQuestionIndex,SingleQuestion,num]}>{props.children}</QuizDataContext.Provider>
+    value={[currentQuestionIndex,setcurrentQuestionIndex,SingleQuestion,num,score,setScore]}>{props.children}</QuizDataContext.Provider>
   )
 }
 

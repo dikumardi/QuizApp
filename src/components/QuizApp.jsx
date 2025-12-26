@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import tumblr from '../assets/tumblr.png'
 import Button from './Button';
 import { QuizDataContext } from '../context/QuizContext';
@@ -9,11 +9,19 @@ import { QuizDataContext } from '../context/QuizContext';
     return String.fromCharCode(65 + index)
  }
 const QuizApp = () => {
-  
-  const [currentQuestionIndex,setcurrentQuestionIndex,SingleQuestion] = useContext(QuizDataContext)
-console.log(SingleQuestion);
+ 
+        const [selectedIndex, setSelectedIndex] = useState(null)
 
+  const [currentQuestionIndex,setcurrentQuestionIndex,SingleQuestion,score,setScore] = useContext(QuizDataContext)
+  
     
+    const ClickHandler = (e,index)=>{
+    console.log(e === SingleQuestion.answer? 'skyblue' : 'transparent');
+      
+   
+     
+    }
+   
     
   return (
    <div className="w-full h-screen bg-gray-800">
@@ -31,11 +39,15 @@ console.log(SingleQuestion);
       
   {SingleQuestion.options.map((e,index)=>{
     return <div  key={index}
+         onClick={()=>{ClickHandler(e,index)}}
+          style={{
+      //  backgroundColor:    ? 'skyblue' : 'transparent'
+    }}
         className='bg-white border px-5 py-3 rounded-xl  mb-3  text-lg'>  <span className='font-medium'> 
           <strong>{indexToAlphabet(index)}</strong> | {e} </span> 
  </div>
   })}       
-  
+    {SingleQuestion.answer}
 
   
     </div>
