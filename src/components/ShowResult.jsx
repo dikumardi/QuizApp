@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 import tumblr from '../assets/tumblr.png';
 import { QuizDataContext } from '../context/QuizContext';
+import { ScoreDataContext } from '../context/ScoreContext';
 
 const ShowResult = () => {
-  const [currentQuestionIndex,setcurrentQuestionIndex,SingleQuestion,num,score,setScore] = useContext(QuizDataContext)
+  const [score,setscore] = useContext(ScoreDataContext)
   return (
     <>
      <div className="w-full h-screen bg-gray-100">
